@@ -1,0 +1,200 @@
+Standard Suite	Common classes and commands for all applications.
+open v : Open a document.
+open file or list of file : The file(s) to be opened.
+→ file or list of file : The opened document(s).
+close v : Close a document.
+close specifier : the document(s) or window(s) to close.
+quit v : Quit the application.
+quit
+count v : Return the number of elements of a particular class within an object.
+count specifier : The objects to be counted.
+→ integer : The count.
+delete v : Delete an object.
+delete specifier : The object(s) to delete.
+duplicate v : Copy an object.
+duplicate list of specifier : The object(s) to copy.
+[to location specifier] : The location for the new copy or copies.
+→ list of specifier : The duplicated objects.
+exists v : Verify that an object exists.
+exists any : The object(s) to check.
+→ boolean : Did the object(s) exist?
+make v : Create a new object.
+make
+new type : The class of the new object.
+[at location specifier] : The location at which to insert the object.
+[with data any] : The initial contents of the object.
+[with properties record] : The initial values for properties of the object.
+→ specifier : The new object.
+move v : Move an object to a new location.
+move list of specifier : The object(s) to move.
+to location specifier : The new location for the object(s).
+→ list of specifier : The moved objects.
+select v : Select the specified object(s)
+select specifier : the object to select
+edit v : Edit the specified object(s)
+edit specifier : the object to select
+application n [see also Keyboard Maestro Suite] : The application's top-level scripting object.
+elements
+contains windows.
+properties
+name (text, r/o) : The name of the application.
+frontmost (boolean, r/o) : Is this the active application?
+version (text, r/o) : The version number of the application.
+selection (list of specifier) : the selection in the macro editor
+responds to
+open, print, quit, setMacroEnable, importMacros, deleteMacro, deleteMacroGroup, editMacro, selectedMacros, selectAction, reload, show preference pane, geturl.
+window n : A window.
+elements
+contained by application.
+properties
+name (text, r/o) : The title of the window.
+id (integer, r/o) : The unique identifier of the window.
+index (integer) : The index of the window, ordered front to back.
+bounds (rectangle) : The bounding rectangle of the window.
+closeable (boolean, r/o) : Does the window have a close button?
+miniaturizable (boolean, r/o) : Does the window have a minimize button?
+miniaturized (boolean) : Is the window minimized right now?
+resizable (boolean, r/o) : Can the window be resized?
+visible (boolean) : Is the window visible right now?
+zoomable (boolean, r/o) : Does the window have a zoom button?
+zoomed (boolean) : Is the window zoomed right now?
+editing (boolean) : Is the editor window editing right now?
+divider1 (integer) : Position of divider 1
+divider2 (integer) : Position of divider 2
+responds to
+close.
+Keyboard Maestro Suite	Terms specific to Keyboard Maestro.
+application n [inh. application; see also Standard Suite] : Keyboard Maestro application class.
+elements
+contains macro groups, smart groups, macros.
+properties
+global macro group (macro group, r/o) : the global macro group
+disabled group holder (disabled macro group holder, r/o) : the disabled macro group holder
+selected macro groups (list of specifier) : the selected macro groups / smart groups in the macro editor
+selected macros (list of specifier) : the selected macros in the macro editor
+macro group n : A macro group.
+elements
+contains macros; contained by application.
+properties
+id (text, r/o) : The unique identifier.
+name (text) : the macro group's name
+selected (boolean, r/o) : is the macro group selected?
+creation date (date, r/o) : the date on which the macro group was created
+modification date (date, r/o) : the date on which the macro was modified
+size (integer, r/o) : the approximate storage size of the macro group
+enabled (boolean) : is the macro group enabled?
+disabled on this Mac (boolean) : is the macro group disabled on this Mac?
+available application xml (text) : the available application XML
+available window xml (text) : the available window XML
+activation xml (text) : the activation XML
+display in menu bar xml (text) : the display in menu bar XML
+xml (text, r/o) : the XML of the macro group and its contents
+group xml (text, r/o) : the XML of just the macro group
+responds to
+select, edit.
+smart group n : A smart group.
+elements
+contained by application.
+properties
+id (text, r/o) : The unique identifier.
+selected (boolean, r/o) : is the smart group selected?
+name (text) : the smart group's name
+creation date (date, r/o) : the date on which the smart group was created.
+modification date (date, r/o) : the date on which the macro was modified
+search strings (list of text) : The search strings
+xml (text, r/o) : the XML of the smart group
+responds to
+select, edit.
+disabled macro group holder n : The disabled macro group holder
+properties
+id (text, r/o) : The unique identifier.
+name (text, r/o) : the disabled macro group holder's name
+selected (boolean, r/o) : is the disabled macro group holder selected?
+responds to
+select.
+macro n : A macro.
+elements
+contains triggers, actions; contained by application, macro groups.
+properties
+id (text, r/o) : The unique identifier.
+selected (boolean, r/o) : is the macro selected?
+name (text) : the macro's name
+macro group (macro group, r/o) : the containing macro group
+enabled (boolean) : is the macro enabled?
+creation date (date, r/o) : the date on which the macro was created
+modification date (date, r/o) : the date on which the macro was modified
+used date (date, r/o) : the date on which the macro was used
+size (integer, r/o) : the approximate storage size of the macro
+xml (text, r/o) : the XML of the macro
+responds to
+select, edit.
+trigger n : A trigger
+elements
+contained by macros.
+properties
+description (text, r/o) : the trigger's description
+xml (text) : the trigger XML
+action n : An action
+elements
+contains actions, case entries; contained by macros, actions, case entries, action lists.
+properties
+id (text, r/o) : The unique identifier.
+name (text) : the action's name
+enabled (boolean) : is the action enabled?
+xml (text) : the action XML
+disclosed (boolean) : is the action disclosed?
+timeout period (real) : the action's timeout period
+timeout aborts (boolean) : does the action abort the macro on timeout
+timeout notifies (boolean) : does the action notify on timeout
+failure aborts (boolean) : does the action abort the macro on failure
+failure notifies (boolean) : does the action notify on failure
+notes (text) : the action's notes
+color (text) : the action's color
+thenactions (action list, r/o) : the then actions
+thenactions disclosed (boolean) : are the thenactions disclosed?
+elseactions (action list, r/o) : the else actions
+elseactions disclosed (boolean) : are the elseactions disclosed?
+tryactions (action list, r/o) : the try actions
+tryactions disclosed (boolean) : are the tryactions disclosed?
+catchactions (action list, r/o) : the catch actions
+catchactions disclosed (boolean) : are the catchactions disclosed?
+actions disclosed (boolean) : are the actions disclosed?
+responds to
+select.
+case entry n, pl case entries : A case entry
+elements
+contains actions; contained by actions.
+properties
+id (text, r/o) : The unique identifier.
+xml (text) : the case entry XML
+actions disclosed (boolean) : are the actions disclosed?
+action list n : An action list
+elements
+contains actions.
+properties
+id (text, r/o) : The unique identifier.
+xml (text) : the action list XML
+setMacroEnable v : Enables or Disabled a Macro Group or Macro by name or UID.
+setMacroEnable text : The name or UID of Macro Group or Macro.
+enable boolean : enable or disable the Macro Group or Macro.
+editMacro v : Start editing a Macro Group or Macro by name or UID.
+editMacro text : The name or UID of Macro Group or Macro.
+selectedMacros v : Selected Macro Group or Macro UIDs.
+selectedMacros
+→ list of text : The UID of the selected Macro Group or Macros.
+selectAction v : Selected action by UID.
+selectAction integer : The UID of the action to select.
+importMacros v : Import macros
+importMacros any : URL to kmmacros file or the XML of the macros to import
+[disabled boolean] : force disable the imported Macros or Macro Groups
+deleteMacro v : Delete macro
+deleteMacro text : The UID or unique name of the macro to delete
+deleteMacroGroup v : Delete macro group
+deleteMacroGroup text : The UID or unique name of the macro group to delete
+reload v : Reload macros.
+reload
+show preference pane v : Show Preference Pane
+show preference pane text : The name of the Keyboard Maestro preference pane to display
+Standard URL Suite	The standard URL suite.
+geturl v : Handled the registration URL.
+geturl text : the registration URL.
